@@ -12,7 +12,7 @@ TODOS:
 const AreaList = ({ areas }) => {
   return (
     <div className="area-list">
-      <h4>Areas</h4>
+      <h4 className="title">Areas</h4>
       {areas.map(area => <AreaListItem key={area.id} area={area} />)}
     </div>
   );

@@ -33,3 +33,18 @@ export const dummyMessages = [
     text: 'Pups'
   }
 ];
+
+export const dummyUsers = [
+  {
+    id: 0,
+    name: 'test',
+  },
+  {
+    id: 1,
+    name: 'something'
+  },
+  {
+    id: 2,
+    name: 'icles'
+  }
+];

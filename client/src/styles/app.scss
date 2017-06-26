@@ -1,0 +1,21 @@
+body {
+  background-color: #eee;
+
+  .title, .navbar {
+    text-align: center;
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+  .area-list {
+    margin-right: 2rem;
+    background-color: salmon;
+  }
+
+  .message-list {
+    width: 60%;
+    background-color: lightblue;
+  }
+}
