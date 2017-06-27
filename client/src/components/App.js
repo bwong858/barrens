@@ -11,8 +11,8 @@ import { dummyAreas, dummyUsers, dummyMessages } from '../dummyData';
 const App = () => {
   return (
     <div>
-      <h1 className="title">Barrens</h1>
       <Navbar />
+      <h1 className="title barrens">Barrens</h1>
       <div className="areas-messages-sidebar inline-block">
         <AreaList areas={dummyAreas} />
         <UserList users={dummyUsers} />

@@ -2,10 +2,9 @@ import React from 'react';
 
 const AreaListItem = ({area}) => {
   return (
-    <li className="area-list-item">
-      I am an item :/
+    <div className="area-list-item">
       Area: {area.name}
-    </li>
+    </div>
   );
 };
 

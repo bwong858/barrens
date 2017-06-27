@@ -8,9 +8,14 @@ import React from 'react';
 const Navbar = () => {
   return (
     <div className="navbar">
-      <button>Message Board</button>
-      <button>Sign Up</button>
-      <button>Log In</button>
+      <span className="messages-events">
+        <button>Message Board</button>
+        <button>My Events</button>
+      </span>
+      <span className="signup-login">
+        <button>Sign Up</button>
+        <button>Log In</button>
+      </span>
     </div>
   );
 };

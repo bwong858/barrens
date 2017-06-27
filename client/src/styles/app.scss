@@ -1,21 +1,43 @@
 body {
   background-color: #eee;
+}
 
-  .title, .navbar {
-    text-align: center;
-  }
+.title, .navbar {
+  text-align: center;
+}
 
-  .inline-block {
-    display: inline-block;
-  }
+.barrens {
+  margin: 3rem;
+}
 
-  .area-list {
-    margin-right: 2rem;
-    background-color: salmon;
-  }
+.navbar {
+  min-height: 0;
+  padding: 0;
+  margin: 1rem;
+}
 
-  .message-list {
-    width: 60%;
-    background-color: lightblue;
-  }
+.messages-events {
+  float: left;
+}
+
+.signup-login {
+  float: right;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.area-list {
+  margin-right: 2rem;
+  background-color: salmon;
+}
+
+.user-list {
+  background-color: lightpink;
+}
+
+.message-list {
+  width: 60%;
+  background-color: lightblue;
 }
