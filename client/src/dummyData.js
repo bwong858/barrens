@@ -1,4 +1,4 @@
-export const dummyAreas = [
+export const dummyChannels = [
   {
     name: 'Barrens',
     id: 0,
