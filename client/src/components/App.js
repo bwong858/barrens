@@ -10,9 +10,9 @@ import { dummyChannels, dummyUsers, dummyMessages } from '../dummyData';
 
 const App = () => {
   return (
-    <div>
+    <div className='app'>
       <Navbar />
-      <h1 className="title barrens">Barrens</h1>
+      <h1 className="title">Barrens</h1>
       <div className="channels-messages-sidebar inline-block">
         <ChannelList channels={dummyChannels} />
         <UserList users={dummyUsers} />
