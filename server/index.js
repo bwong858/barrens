@@ -8,6 +8,7 @@ const io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/../client/dist'));
 
+
 // app.get('/areas/barrens', (req, res) => {
 //   items.selectAll((err, data) => {
 //     err ? res.sendStatus(500) : res.json(data);
@@ -16,6 +17,12 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/', (req, res) => {
   res.send('get request to home page');
+});
+
+app.get('/channels/barrens', (req, res) => {
+  items.selectAll((err, data) => {
+    err ? res.sendStatus(500) : res.json(data);
+  });
 });
 
 
