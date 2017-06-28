@@ -51,16 +51,38 @@ a {
   display: inline-block;
 }
 
-.channel-list {
-  margin-right: 2rem;
-  background-color: salmon;
+.message-board {
+  margin: 5rem 2rem;
 }
 
-.user-list {
-  background-color: lightpink;
+.channels-users-sidebar {
+  width: 25vw;
+
+  * {
+    margin-left: 2rem;
+  }
+
+  .channel-list {
+    background-color: salmon;
+  }
+
+  .user-list {
+    background-color: lightpink;
+  }
+}
+
+.message-list-container {
+  margin-left: 2rem;
 }
 
 .message-list {
-  width: 60%;
+  margin: auto;
+  width: 65vw;
   background-color: lightblue;
+}
+
+.username {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
 }

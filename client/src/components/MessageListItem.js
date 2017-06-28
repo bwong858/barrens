@@ -14,7 +14,6 @@ const MessageListItem = ({message}) => {
       {message.text}
       <br />
       <span className="username">{message.userId}</span>
-      <button>DM</button>
     </div>
   );
 };
