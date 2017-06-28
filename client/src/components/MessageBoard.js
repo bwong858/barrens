@@ -8,11 +8,20 @@ import MessageInput from './MessageInput';
 import { dummyChannels, dummyUsers, dummyMessages } from '../dummyData';
 
 class MessageBoard extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       messages: []
     };
+  }
+
+  componentWillMount() {
+    this.props.socket.on('message', message => {
+      console.log('receivingklajd LE message', message);
+      this.setState({
+        messages: [ ...this.state.messages, message ]
+      });
+    });
   }
 
   componentDidMount() {
@@ -20,6 +29,7 @@ class MessageBoard extends Component {
       const lat = pos.coords.latitude;
       const lon = pos.coords.longitude;
 
+      // TODO: add subscription
       this.fetchMessages(lat, lon)
         .then(messages => {
           this.setState({
@@ -51,7 +61,7 @@ class MessageBoard extends Component {
         </div>
         <div className="message-list-container inline-block">
           <MessageList messages={this.state.messages} />
-          <MessageInput />
+          <MessageInput socket={this.props.socket} />
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MessageInput = () => {
+const MessageInput = ({socket}) => {
   let input;
 
   const handleChange = (e) => {
@@ -9,7 +9,12 @@ const MessageInput = () => {
 
   const handleSend = () => {
     // post/socket that shit
-    console.log(input);
+    socket.emit('send', {
+      region: 'some region',
+      roomname: 'some roomname',
+      userId: 2,
+      text: input
+    });
   };
 
   return (
