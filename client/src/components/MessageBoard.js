@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { sendMessage } from '../actions/messages';
 
 import ChannelList from './ChannelList';
 import UserList from './UserList';
