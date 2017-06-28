@@ -20,17 +20,20 @@ export const dummyMessages = [
   {
     id: 0,
     userId: 2,
-    text: 'Sups'
+    text: 'Sups',
+    roomAndRegion: 'SF-General'
   },
   {
     id: 1,
     userId: 3,
-    text: 'Nups'
+    text: 'Nups',
+    roomAndRegion: 'SF-General'
   },
   {
     id: 2,
     userId: 10,
-    text: 'Pups'
+    text: 'Pups',
+    roomAndRegion: 'SF-General'
   }
 ];
 
