@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+// import io from 'socket.io';
 
 import '../styles/app.scss';
 
@@ -9,6 +10,7 @@ import Signup from './Signup';
 import Login from './Login';
 
 const App = () => {
+  // io();
   return (
     <div>
       <Navbar />

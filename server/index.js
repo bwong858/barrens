@@ -2,8 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const db = require('../database');
 
+const { dummyChannels, dummyUsers, dummyMessages } = require('./dummyData');
+
 const app = express();
-const server = app.listen(9000, () => {
+const server = app.listen(8000, () => {
   console.log('listening on port 9000!');
 });
 
@@ -19,6 +21,7 @@ app.get('/api/messages/:lat/:long', (req, res) => {
   // figure out which region we're looking in
   //retrieve all messages that have been tagged with that region
   //retrieve all messages tagged with general
+  res.json(dummyMessages);
 });
 
 app.get('/api/:lat/:long/:channel', (req, res) => {
