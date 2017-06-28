@@ -1,16 +1,16 @@
 export const dummyChannels = [
   {
-    name: 'Barrens',
+    name: 'General',
     id: 0,
     users: [0, 1, 2]
   },
   {
-    name: 'Orgrimmar',
+    name: 'Events',
     id: 1,
     users: [5, 6, 7]
   },
   {
-    name: 'Undercity',
+    name: 'Trade',
     id: 2,
     users: [10, 11, 12]
   }

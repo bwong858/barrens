@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /*
   TODOS:
@@ -9,12 +10,12 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <span className="messages-events">
-        <button>Message Board</button>
-        <button>My Events</button>
+        <Link to="/messages">Message Board</Link>
+        <Link to="#">My Events</Link>
       </span>
       <span className="signup-login">
-        <button>Sign Up</button>
-        <button>Log In</button>
+        <Link to="/signup">Sign Up</Link>
+        <Link to="/login">Log In</Link>
       </span>
     </div>
   );
