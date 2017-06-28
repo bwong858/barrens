@@ -1,23 +1,23 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
 import '../styles/app.scss';
 
 import Navbar from './Navbar';
-import ChannelList from './ChannelList';
-import UserList from './UserList';
-import MessageList from './MessageList';
-
-import { dummyChannels, dummyUsers, dummyMessages } from '../dummyData';
+import MessageBoard from './MessageBoard';
+import Signup from './Signup';
+import Login from './Login';
 
 const App = () => {
   return (
-    <div className='app'>
+    <div>
       <Navbar />
       <h1 className="title">Barrens</h1>
-      <div className="channels-messages-sidebar inline-block">
-        <ChannelList channels={dummyChannels} />
-        <UserList users={dummyUsers} />
-      </div>
-      <MessageList messages={dummyMessages} />
+      <Switch>
+        <Route path='/messages' component={MessageBoard} />
+        <Route path='/signup' component={Signup} />
+        <Route path='/login' component={Login} />
+      </Switch>
     </div>
   );
 };

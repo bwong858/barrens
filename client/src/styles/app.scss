@@ -2,6 +2,29 @@ body {
   background-color: #eee;
 }
 
+form {
+  text-align: center;
+  margin-top: 6rem;
+
+  * {
+    display: block;
+    margin: 1rem auto;
+    text-align: center;
+  }
+
+  input {
+    width: 20rem;
+  }
+
+  button {
+    margin-top: 4rem;
+  }
+}
+
+a {
+  margin: 1rem;
+}
+
 .title, .navbar {
   text-align: center;
 }
