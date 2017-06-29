@@ -27,6 +27,7 @@ CREATE TABLE messages )
   lat INTEGER,
   long INTEGER,
   area VARCHAR REFERENCES areas (name)
+  stamp TIMESTAMPTZ
 );
 
 CREATE TABLE users (
