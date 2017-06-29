@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { logIn } from '../actions/user';
 
-const Login = () => {
+const Login = ({ dispatch }) => {
   let username = '';
   let password = '';
 
@@ -16,8 +17,7 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault();
     username = username.trim();
-    password = password.trim();
-    logIn(username, password);
+    dispatch(logIn(username, password));
   };
 
   return (
@@ -31,4 +31,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect()(Login);

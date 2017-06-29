@@ -6,7 +6,6 @@ import MessageBoard from '../components/MessageBoard';
 const mapStateToProps = ({ messages }, { socket }) => ({ // state, ownProps
   messages,
   socket
-  // messages: fetchMessages(120, 120) // need lat and lon
 });
 
 const mapDispatchToProps = dispatch => ({

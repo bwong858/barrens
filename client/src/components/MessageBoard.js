@@ -42,8 +42,7 @@ const MessageBoard = ({ socket, messages, setMessages, sendMessage, updateMessag
         <UserList users={dummyUsers} />
       </div>
       <div className="message-list-container inline-block">
-        <MessageList messages={messages.length ? messages : [{ text:
-        'Loading messages...' }]} />
+        <MessageList messages={messages} />
         <MessageInput socket={socket} sendMessage={sendMessage} />
       </div>
     </div>

@@ -1,4 +1,9 @@
-import { FETCH_MESSAGES, SET_MESSAGES, SEND_MESSAGE, UPDATE_MESSAGES } from '../actions/actionTypes';
+import {
+  FETCH_MESSAGES,
+  SET_MESSAGES,
+  SEND_MESSAGE,
+  UPDATE_MESSAGES
+} from '../actions/actionTypes';
 
 const messages = (state = [], action) => {
   switch (action.type) {
@@ -8,9 +13,7 @@ const messages = (state = [], action) => {
     fetch(`http://localhost:8000/api/messages/${action.coords.lat}/${action.coords.lon}`, {
       method: 'GET'
     })
-      .then(messages =>
-        messages.json()
-      )
+      .then(messages => messages.json())
       .catch(err => {
         console.log('We suck:', err);
       });
