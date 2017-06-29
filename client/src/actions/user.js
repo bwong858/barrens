@@ -1,4 +1,4 @@
-import { SIGN_UP, LOG_IN, LOG_OUT } from './actionTypes';
+import { SIGN_UP, LOG_IN, LOG_OUT, CHANGE_CHANNEL } from './actionTypes';
 
 export const signUp = (username, password) => ({
   type: SIGN_UP,
@@ -14,4 +14,9 @@ export const logIn = (username, password) => ({
 
 export const logOut = () => ({
   type: LOG_OUT
+});
+
+export const changeChannel = channel => ({
+  type: CHANGE_CHANNEL,
+  channel
 });
