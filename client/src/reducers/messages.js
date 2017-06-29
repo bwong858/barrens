@@ -8,16 +8,11 @@ const messages = (state = [], action) => {
     fetch(`http://localhost:8000/api/messages/${action.coords.lat}/${action.coords.lon}`, {
       method: 'GET'
     })
-      .then(res =>
-        res.json()
+      .then(messages =>
+        messages.json()
       )
-      .then(messages => {
-        console.log(messages);
-        return messages;
-      })
       .catch(err => {
         console.log('We suck:', err);
-        return state;
       });
     break;
   case SEND_MESSAGE:
