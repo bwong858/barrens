@@ -26,6 +26,8 @@ const dummyMessages = [
 
 // const db = require('../database');
 
+const { dummyChannels, dummyUsers, dummyMessages } = require('./dummyData');
+
 const app = express();
 const server = app.listen(8000, () => {
   console.log('listening on port 8000!');
@@ -44,6 +46,7 @@ app.get('/api/messages/:lat/:long', (req, res) => {
   //retrieve all messages that have been tagged with that region
   //retrieve all messages tagged with general'
   console.log('receiving the initial GET request');
+  //retrieve all messages tagged with general
   res.json(dummyMessages);
 });
 
@@ -71,12 +74,17 @@ io.sockets.on('connection', (socket) => {
   console.log('a user has connected');
   socket.on('subscribe', (room) => {
     console.log('joining room', room);
+    socket.join(room);
   });
   socket.on('unsubscribe', (room) => {
     console.log('leaving room', room);
+    socket.leave(room);
   });
   socket.on('send', (data) => {
-    console.log('sending message', data.message);
-    io.sockets.in(data.roomAndRegion).emit('message', data);
+    // console.log('sending message', data.message);
+    const roomAndRegion = `${data.region}-${data.channel}`;
+    // io.sockets.in(data.roomAndRegion).emit('message', data);
+    console.log('received message', data);
+    io.emit('message', data);
   });
 });

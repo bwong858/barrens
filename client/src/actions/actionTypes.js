@@ -1,0 +1,7 @@
+export const FETCH_MESSAGES = 'FETCH_MESSAGES';
+
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+
+export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
+
+export const SET_MESSAGES = 'SET_MESSAGES';

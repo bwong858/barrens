@@ -8,7 +8,7 @@
     "node": ">=6.4.0"
   },
   "scripts": {
-    "build": "webpack -d --watch",
+    "watch": "webpack -d --watch",
     "dev": "webpack-dev-server",
     "start": "nodemon server/index.js"
   },
@@ -18,7 +18,9 @@
     "express": "^4.15.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
+    "redux": "^3.7.1",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.7.2",
+    "bluebird": "^3.5.0",
     "css-loader": "^0.28.4",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "node-sass": "^4.5.3",
