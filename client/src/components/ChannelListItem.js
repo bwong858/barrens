@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ChannelListItem = ({channel}) => {
+const ChannelListItem = ({channel, changeChannel}) => {
   return (
-    <div className="channel-list-item">
-      Channel: {channel.name}
+    <div className="channel-list-item" onClick={() => changeChannel(channel.name)}>
+      {channel.name}
     </div>
   );
 };

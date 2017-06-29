@@ -21,19 +21,21 @@ export const dummyMessages = [
     id: 0,
     userId: 2,
     text: 'Sups',
-    roomAndRegion: 'SF-General'
+    region: 'SF',
+    channel: 'General'
   },
   {
     id: 1,
     userId: 3,
     text: 'Nups',
-    roomAndRegion: 'SF-General'
+    region: 'Marin',
+    channel: 'Trade'
   },
   {
     id: 2,
     userId: 10,
     text: 'Pups',
-    roomAndRegion: 'SF-General'
+    roomAndRegion: 'SF-Events'
   }
 ];
 
@@ -48,6 +50,6 @@ export const dummyUsers = [
   },
   {
     id: 2,
-    name: 'icles'
+    name: 'someone'
   }
 ];

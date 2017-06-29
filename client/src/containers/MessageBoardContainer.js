@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { fetchMessages, setMessages, sendMessage, updateMessages } from '../actions/messages';
+import { changeChannel } from '../actions/user';
 
 import MessageBoard from '../components/MessageBoard';
 
 const mapStateToProps = ({ messages }, { socket }) => ({ // state, ownProps
   messages,
   socket
-  // messages: fetchMessages(120, 120) // need lat and lon
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,6 +21,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateMessages: message => {
     dispatch(updateMessages(message));
+  },
+  changeChannel: channel => {
+    dispatch(changeChannel(channel));
   }
 });
 
