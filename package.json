@@ -8,12 +8,13 @@
     "node": ">=6.4.0"
   },
   "scripts": {
-    "build": "webpack -d",
+    "build": "webpack -d --watch",
     "dev": "webpack-dev-server",
     "start": "nodemon server/index.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
     "express": "^4.15.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

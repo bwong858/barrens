@@ -16,11 +16,13 @@ class MessageBoard extends Component {
       lat = pos.coords.latitude;
       lon = pos.coords.longitude;
 
-      fetch(`https://localhost:9000/api/messages/${lat}/${lon}`, {
+      fetch(`http://localhost:8000/api/messages/${lat}/${lon}`, {
         method: 'GET'
       }).then(res => {
         // set messages state
-        console.log(res.json());
+        return res.json();
+      }).then(messages => {
+        console.log(messages);
       });
     });
   }

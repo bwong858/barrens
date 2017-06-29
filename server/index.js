@@ -1,10 +1,34 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const dummyMessages = [
+  {
+    id: 0,
+    username: 'hank',
+    userId: 2,
+    text: 'Sups',
+    roomAndRegion: 'SF-General'
+  },
+  {
+    id: 1,
+    username: 'bobby',
+    userId: 3,
+    text: 'Nups',
+    roomAndRegion: 'SF-General'
+  },
+  {
+    id: 2,
+    username: 'boomhauer',
+    userId: 10,
+    text: 'Pups',
+    roomAndRegion: 'SF-General'
+  }
+];
+
 // const db = require('../database');
 
 const app = express();
-const server = app.listen(9000, () => {
-  console.log('listening on port 9000!');
+const server = app.listen(8000, () => {
+  console.log('listening on port 8000!');
 });
 
 const io = require('socket.io').listen(server);
@@ -16,16 +40,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/messages/:lat/:long', (req, res) => {
-  // figure out which region we're looking in
+  // figure out which region we're loo  king in
   //retrieve all messages that have been tagged with that region
-  //retrieve all messages tagged with general
+  //retrieve all messages tagged with general'
+  console.log('receiving the initial GET request');
+  res.json(dummyMessages);
 });
 
 app.get('/api/:lat/:long/:channel', (req, res) => {
   //every message will have coords and so we'll check each time
   //actually this should be don
 });
-
 
 
 app.get('/api/:region/:channel', (req, res) => {
