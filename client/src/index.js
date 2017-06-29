@@ -10,7 +10,7 @@ import App from './components/App';
 const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>

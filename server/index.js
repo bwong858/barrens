@@ -49,13 +49,16 @@ io.sockets.on('connection', (socket) => {
   console.log('a user has connected');
   socket.on('subscribe', (room) => {
     console.log('joining room', room);
+    socket.join(room);
   });
   socket.on('unsubscribe', (room) => {
     console.log('leaving room', room);
+    socket.leave(room);
   });
   socket.on('send', (data) => {
     // console.log('sending message', data.message);
-    // io.sockets.in(data.roomAndRegion).emit('message', data);
+    const roomAndRegion = `${data.region}-${data.channel}`;
+    io.sockets.in(data.roomAndRegion).emit('message', data);
     console.log('received message', data);
     io.emit('message', data);
   });

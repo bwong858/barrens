@@ -11,8 +11,8 @@ const MessageInput = ({socket}) => {
     // post/socket that shit
     socket.emit('send', {
       region: 'some region',
-      roomname: 'some roomname',
-      userId: 2,
+      channel: 'general',
+      username: 'Bob',
       text: input
     });
   };
