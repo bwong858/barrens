@@ -1,5 +1,5 @@
 import React from 'react';
-import Promise from 'bluebird';
+// import Promise from 'bluebird';
 
 import ChannelList from './ChannelList';
 import UserList from './UserList';
