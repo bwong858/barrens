@@ -17,7 +17,7 @@ form {
   }
 
   button {
-    margin-top: 4rem;
+    margin-top: 3rem;
   }
 }
 
@@ -89,4 +89,19 @@ a {
 
 .message-input {
   text-align: center;
+  input {
+    width: 40rem;
+  }
+  * {
+    display: inline-block;
+  }
+}
+
+.selected {
+  color: blue;
+}
+
+.pointer-on-hover {
+  cursor: pointer;
+  cursor: hand;
 }

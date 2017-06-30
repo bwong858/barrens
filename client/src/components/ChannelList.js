@@ -9,11 +9,11 @@ TODOS:
   styling for current room
 */
 
-const ChannelList = ({ channels, changeChannel }) => {
+const ChannelList = ({ user, channels, changeChannel }) => {
   return (
     <div className="channel-list">
       <h4 className="title">Channels</h4>
-      {channels.map(channel => <ChannelListItem key={channel.id} channel={channel} changeChannel={changeChannel} />)}
+      {channels.map(channel => <ChannelListItem key={channel.id} user={user} channel={channel} changeChannel={changeChannel} />)}
     </div>
   );
 };

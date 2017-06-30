@@ -5,8 +5,11 @@ const bodyParser = require('body-parser');
 const { dummyChannels, dummyUsers, dummyMessages } = require('./dummyData');
 
 const app = express();
-const server = app.listen(8000, () => {
-  console.log('listening on port 9000!');
+
+const PORT = process.env.PORT || 8000;
+
+const server = app.listen(PORT, () => {
+  console.log('listening on port 8000!');
 });
 
 const io = require('socket.io').listen(server);
@@ -56,10 +59,8 @@ io.sockets.on('connection', (socket) => {
     socket.leave(room);
   });
   socket.on('send', (data) => {
-    // console.log('sending message', data.message);
-    const roomAndRegion = `${data.region}-${data.channel}`;
-    // io.sockets.in(data.roomAndRegion).emit('message', data);
     console.log('received message', data);
-    io.emit('message', data);
+    io.sockets.in(data.region).emit('message', data);
+    // io.emit('message', data);
   });
 });
