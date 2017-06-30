@@ -17,7 +17,8 @@ const fetchInitialMessages = (lat, lon) => {
       const lat = pos.coords.latitude;
       const lon = pos.coords.longitude;
 
-      return fetch(`http://localhost:8000/api/messages/${lat}/${lon}`);
+      return fetch(`https://vast-tor-38918.herokuapp.com/api/messages/${lat}/${lon}`);
+      // return fetch(`http://localhost:8000/api/messages/${lat}/${lon}`);
     })
     .then(res => res.json());
 };
