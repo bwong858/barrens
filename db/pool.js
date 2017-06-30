@@ -1,3 +1,7 @@
+/*** Sample Code for Pooling in PostgreSQL
+
+***/
+
 const pg = require('pg');
  
 // create a config to configure both pooling behavior 

@@ -24,3 +24,16 @@ const query = client.query(
 
 // When all rows have been queried or an error occurs, then the query will end.
 query.on('end', () => { client.end(); });
+
+
+
+/***
+To Do
+
+also more of a general db thing @artliou , but can you also 
+
+create the file that includes the config options and creates a pool that we can use throughout the rest of the project?
+
+1-
+2-Command Lines Documentation
+3-User/Events Join Table
