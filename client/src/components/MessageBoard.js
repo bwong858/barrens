@@ -40,7 +40,7 @@ const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, update
     <div className="message-board">
       <div className="channels-users-sidebar inline-block">
         <ChannelList user={user} channels={dummyChannels} changeChannel={changeChannel} />
-        <UserList users={dummyUsers} />
+        <UserList users={dummyUsers} user={user} />
       </div>
       <div className="message-list-container inline-block">
         <MessageList messages={messages} user={user} />
