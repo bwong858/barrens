@@ -22,7 +22,7 @@ const fetchInitialMessages = (lat, lon) => {
     .then(res => res.json());
 };
 
-const MessageBoard = ({ socket, messages, setMessages, sendMessage, updateMessages, changeChannel }) => {
+const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, updateMessages, changeChannel }) => {
   if (!messages.length) {
     // problematic if there are no messages to fetch - will continue to create sockets; however, must create socket exactly once in order to begin populating messages on emit
     // if messages state is actually empty, message send MUST trigger re-render in order to ever render the message(s)
@@ -31,19 +31,19 @@ const MessageBoard = ({ socket, messages, setMessages, sendMessage, updateMessag
       socket.on('message', message => {
         updateMessages(message);
       });
-      socket.emit('subscribe', 'SF-general');
+      socket.emit('subscribe', 'Market St');
     });
   }
 
   return (
     <div className="message-board">
       <div className="channels-users-sidebar inline-block">
-        <ChannelList channels={dummyChannels} changeChannel={changeChannel} />
+        <ChannelList user={user} channels={dummyChannels} changeChannel={changeChannel} />
         <UserList users={dummyUsers} />
       </div>
       <div className="message-list-container inline-block">
-        <MessageList messages={messages} />
-        <MessageInput socket={socket} sendMessage={sendMessage} />
+        <MessageList messages={messages} user={user} />
+        <MessageInput socket={socket} getUserInfo={getUserInfo} user={user} />
       </div>
     </div>
   );

@@ -56,10 +56,8 @@ io.sockets.on('connection', (socket) => {
     socket.leave(room);
   });
   socket.on('send', (data) => {
-    // console.log('sending message', data.message);
-    const roomAndRegion = `${data.region}-${data.channel}`;
-    // io.sockets.in(data.roomAndRegion).emit('message', data);
     console.log('received message', data);
-    io.emit('message', data);
+    io.sockets.in(data.region).emit('message', data);
+    // io.emit('message', data);
   });
 });

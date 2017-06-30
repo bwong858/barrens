@@ -1,8 +1,10 @@
 import React from 'react';
 
-const ChannelListItem = ({channel, changeChannel}) => {
+const ChannelListItem = ({ user, channel, changeChannel }) => {
+  const className = 'channel-list-item pointer-on-hover'
+                    + (channel.name === user.channel ? ' selected' : '');
   return (
-    <div className="channel-list-item" onClick={() => changeChannel(channel.name)}>
+    <div className={className} onClick={() => changeChannel(channel.name)}>
       {channel.name}
     </div>
   );

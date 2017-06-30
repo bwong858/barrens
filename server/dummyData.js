@@ -19,21 +19,24 @@ const dummyChannels = [
 const dummyMessages = [
   {
     id: 0,
-    userId: 2,
+    username: 'theBob',
     text: 'Sups',
-    roomAndRegion: 'SF-General'
+    region: 'SF',
+    channel: 'General'
   },
   {
     id: 1,
-    userId: 3,
+    username: 'notBob',
     text: 'Nups',
-    roomAndRegion: 'SF-General'
+    region: 'Marin',
+    channel: 'Trade'
   },
   {
     id: 2,
-    userId: 10,
+    username: 'someBob',
     text: 'Pups',
-    roomAndRegion: 'SF-General'
+    region: 'Market St',
+    channel: 'General'
   }
 ];
 

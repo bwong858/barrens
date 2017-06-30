@@ -1,4 +1,4 @@
-import { SIGN_UP, LOG_IN, LOG_OUT, CHANGE_CHANNEL } from '../actions/actionTypes';
+import { SIGN_UP, LOG_IN, LOG_OUT, GET_USER_INFO, CHANGE_CHANNEL } from '../actions/actionTypes';
 
 const initialState = {
   username: 'anon',
@@ -21,7 +21,6 @@ const user = (state = initialState, action) => {
       // set to initial state but keep current region
       return { ...initialState, region: state.region };
     case CHANGE_CHANNEL:
-      console.log({ ...state, channel: action.channel });
       return { ...state, channel: action.channel };
     default:
       return state;

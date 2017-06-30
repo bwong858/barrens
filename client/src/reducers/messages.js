@@ -1,7 +1,6 @@
 import {
   FETCH_MESSAGES,
   SET_MESSAGES,
-  SEND_MESSAGE,
   UPDATE_MESSAGES
 } from '../actions/actionTypes';
 
@@ -18,9 +17,6 @@ const messages = (state = [], action) => {
   //       console.log('We suck:', err);
   //     });
   //   break;
-  case SEND_MESSAGE:
-    // this needs to be updated to emit and subscribe to socket
-    return [...state, action.message];
   case UPDATE_MESSAGES:
     return [...state, action.message];
   default:

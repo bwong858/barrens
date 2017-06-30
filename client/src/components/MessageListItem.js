@@ -13,7 +13,7 @@ const MessageListItem = ({message}) => {
     <div className="message-list-item">
       {message.text}
       <br />
-      <span className="username">{message.userId}</span>
+      <span className="username">{message.username}</span>
     </div>
   );
 };
