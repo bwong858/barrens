@@ -1,35 +1,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dummyMessages = [
-  {
-    id: 0,
-    username: 'hank',
-    userId: 2,
-    text: 'Sups',
-    roomAndRegion: 'SF-General'
-  },
-  {
-    id: 1,
-    username: 'bobby',
-    userId: 3,
-    text: 'Nups',
-    roomAndRegion: 'SF-General'
-  },
-  {
-    id: 2,
-    username: 'boomhauer',
-    userId: 10,
-    text: 'Pups',
-    roomAndRegion: 'SF-General'
-  }
-];
+// const dummyMessages = [
+//   {
+//     id: 0,
+//     username: 'hank',
+//     userId: 2,
+//     text: 'Sups',
+//     roomAndRegion: 'SF-General'
+//   },
+//   {
+//     id: 1,
+//     username: 'bobby',
+//     userId: 3,
+//     text: 'Nups',
+//     roomAndRegion: 'SF-General'
+//   },
+//   {
+//     id: 2,
+//     username: 'boomhauer',
+//     userId: 10,
+//     text: 'Pups',
+//     roomAndRegion: 'SF-General'
+//   }
+// ];
 
 // const db = require('../database');
 
 const { dummyChannels, dummyUsers, dummyMessages } = require('./dummyData');
 
 const app = express();
-const server = app.listen(8000, () => {
+
+const PORT = process.env.PORT || 8000;
+
+const server = app.listen(PORT, () => {
   console.log('listening on port 8000!');
 });
 
@@ -81,10 +84,8 @@ io.sockets.on('connection', (socket) => {
     socket.leave(room);
   });
   socket.on('send', (data) => {
-    // console.log('sending message', data.message);
-    const roomAndRegion = `${data.region}-${data.channel}`;
-    // io.sockets.in(data.roomAndRegion).emit('message', data);
     console.log('received message', data);
-    io.emit('message', data);
+    io.sockets.in(data.region).emit('message', data);
+    // io.emit('message', data);
   });
 });

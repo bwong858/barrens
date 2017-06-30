@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import { fetchMessages, setMessages, sendMessage, updateMessages } from '../actions/messages';
+import { fetchMessages, setMessages, updateMessages } from '../actions/messages';
+import { changeChannel } from '../actions/user';
 
 import MessageBoard from '../components/MessageBoard';
 
-const mapStateToProps = ({ messages }, { socket }) => ({ // state, ownProps
+const mapStateToProps = ({ messages, user }, { socket }) => ({ // state, ownProps
   messages,
+  user,
   socket
-  // messages: fetchMessages(120, 120) // need lat and lon
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,11 +17,11 @@ const mapDispatchToProps = dispatch => ({
   setMessages: messages => {
     dispatch(setMessages(messages));
   },
-  sendMessage: message => {
-    dispatch(sendMessage(message));
-  },
   updateMessages: message => {
     dispatch(updateMessages(message));
+  },
+  changeChannel: channel => {
+    dispatch(changeChannel(channel));
   }
 });
 

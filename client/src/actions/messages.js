@@ -1,4 +1,4 @@
-import { FETCH_MESSAGES, SET_MESSAGES, SEND_MESSAGE, UPDATE_MESSAGES } from './actionTypes';
+import { FETCH_MESSAGES, SET_MESSAGES, UPDATE_MESSAGES } from './actionTypes';
 
 export const fetchMessages = (lat, lon) => ({
   type: FETCH_MESSAGES,
@@ -8,11 +8,6 @@ export const fetchMessages = (lat, lon) => ({
 export const setMessages = messages => ({
   type: SET_MESSAGES,
   messages
-});
-
-export const sendMessage = message => ({
-  type: SEND_MESSAGE,
-  message
 });
 
 export const updateMessages = message => ({
