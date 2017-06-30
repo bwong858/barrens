@@ -5,8 +5,11 @@ const bodyParser = require('body-parser');
 const { dummyChannels, dummyUsers, dummyMessages } = require('./dummyData');
 
 const app = express();
-const server = app.listen(8000, () => {
-  console.log('listening on port 9000!');
+
+const PORT = process.env.PORT || 8000;
+
+const server = app.listen(PORT, () => {
+  console.log('listening on port 8000!');
 });
 
 const io = require('socket.io').listen(server);
