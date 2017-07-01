@@ -24,6 +24,8 @@ const fetchInitialMessages = (lat, lon) => {
 };
 
 const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, updateMessages, changeChannel }) => {
+  let fetching = true;
+
   if (!messages.length) {
     // problematic if there are no messages to fetch - will continue to create sockets; however, must create socket exactly once in order to begin populating messages on emit
     // if messages state is actually empty, message send MUST trigger re-render in order to ever render the message(s)
@@ -34,7 +36,10 @@ const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, update
       });
       socket.emit('subscribe', 'Market St');
     });
+  } else {
+    fetching = false;
   }
+  // let fetching = false; // for use with dummyData
 
   return (
     <div className="message-board">
@@ -43,7 +48,7 @@ const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, update
         <UserList users={dummyUsers} user={user} />
       </div>
       <div className="message-list-container inline-block">
-        <MessageList messages={messages} user={user} />
+        <MessageList messages={messages} user={user} fetching={fetching} />
         <MessageInput socket={socket} getUserInfo={getUserInfo} user={user} />
       </div>
     </div>

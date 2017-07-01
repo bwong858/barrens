@@ -10,11 +10,15 @@ import React from 'react';
 
 const MessageListItem = ({ message, user }) => {
   const el = message.username === user.username
-    ? <span className="own-message">{message.text}</span>
+    ? <span className="own-message">
+        {message.text}
+        <span className="timestamp">{message.timestamp}</span>
+      </span>
     : <span className="other-user-message">
         <span className="username">{message.username}</span>
         <br />
         <span>{message.text}</span>
+        <span className="timestamp">{message.timestamp}</span>
       </span>;
   return (
     <div className="message-list-item">
