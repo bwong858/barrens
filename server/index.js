@@ -1,30 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const dummyMessages = [
-//   {
-//     id: 0,
-//     username: 'hank',
-//     userId: 2,
-//     text: 'Sups',
-//     roomAndRegion: 'SF-General'
-//   },
-//   {
-//     id: 1,
-//     username: 'bobby',
-//     userId: 3,
-//     text: 'Nups',
-//     roomAndRegion: 'SF-General'
-//   },
-//   {
-//     id: 2,
-//     username: 'boomhauer',
-//     userId: 10,
-//     text: 'Pups',
-//     roomAndRegion: 'SF-General'
-//   }
-// ];
 
-// const db = require('../database');
+const db = require('../db');
 
 const { dummyChannels, dummyUsers, dummyMessages } = require('./dummyData');
 
