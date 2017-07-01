@@ -4,6 +4,8 @@ import {
   UPDATE_MESSAGES
 } from '../actions/actionTypes';
 
+// import { dummyMessages } from '../dummyData';
+
 const messages = (state = [], action) => {
   switch (action.type) {
   case SET_MESSAGES:

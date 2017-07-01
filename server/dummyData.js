@@ -22,21 +22,24 @@ const dummyMessages = [
     username: 'theBob',
     text: 'Sups',
     region: 'SF',
-    channel: 'General'
+    channel: 'General',
+    timestamp: 1498888596867
   },
   {
     id: 1,
     username: 'notBob',
     text: 'Nups',
     region: 'Marin',
-    channel: 'Trade'
+    channel: 'Trade',
+    timestamp: 1498888596867
   },
   {
     id: 2,
     username: 'someBob',
     text: 'Pups',
     region: 'Market St',
-    channel: 'General'
+    channel: 'General',
+    timestamp: 1498888596867
   }
 ];
 

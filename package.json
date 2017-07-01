@@ -31,7 +31,6 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.7.2",
-    "bluebird": "^3.5.0",
     "css-loader": "^0.28.4",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "node-sass": "^4.5.3",
