@@ -20,7 +20,11 @@ class MessageInput extends Component {
     e.preventDefault();
     const inp = this.state.input.trim();
     if (inp) {
-      this.props.socket.emit('send', { ...this.props.user, text: this.state.input });
+      this.props.socket.emit('send', {
+        ...this.props.user,
+        text: this.state.input,
+        timestamp: Date.now()
+      });
       this.setState({
         input: ''
       });
@@ -45,29 +49,3 @@ class MessageInput extends Component {
 }
 
 export default MessageInput;
-
-
-
-
-// import React from 'react';
-
-// const MessageInput = ({ socket, user }) => {
-//   let input = '';
-
-//   const handleChange = e => {
-//     input = e.target.value;
-//   };
-
-//   const handleSend = () => {
-//     socket.emit('send', { ...user, text: input });
-//   };
-
-//   return (
-//     <div className="message-input">
-//       <input type="text" placeholder="New Message" onChange={handleChange} />
-//       <button onClick={handleSend}>Send</button>
-//     </div>
-//   );
-// };
-
-// export default MessageInput;

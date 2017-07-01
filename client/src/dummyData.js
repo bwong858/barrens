@@ -42,14 +42,17 @@ export const dummyMessages = [
 export const dummyUsers = [
   {
     id: 0,
-    name: 'test',
+    name: 'theBob',
+    channel: 'General'
   },
   {
     id: 1,
-    name: 'something'
+    name: 'someBob',
+    channel: 'General'
   },
   {
     id: 2,
-    name: 'someone'
+    name: 'notBob',
+    channel: 'Trade'
   }
 ];

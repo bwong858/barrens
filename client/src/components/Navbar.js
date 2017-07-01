@@ -11,7 +11,6 @@ const Navbar = () => {
     <div className="navbar">
       <span className="messages-events">
         <Link to="/messages">Message Board</Link>
-        <Link to="#">My Events</Link>
       </span>
       <span className="signup-login">
         <Link to="/signup">Sign Up</Link>

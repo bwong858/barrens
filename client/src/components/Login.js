@@ -22,6 +22,7 @@ const Login = ({ dispatch }) => {
 
   return (
     <div className="login">
+      <h3>Log In</h3>
       <form action="" onSubmit={handleSubmit}>
         <input type="text" placeholder="Username" onChange={handleUsernameChange} />
         <input type="text" placeholder="Password" onChange={handlePasswordChange} />

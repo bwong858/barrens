@@ -31,6 +31,7 @@ const Signup = ({ dispatch }) => {
 
   return (
     <div className="signup">
+      <h3>Sign Up</h3>
       <form action="" onSubmit={handleSubmit}>
         <input type="text" name="" id="" placeholder="Desired Username" onChange={handleUsernameChange} />
         <input type="text" placeholder="Password" onChange={handlePasswordChange} />
