@@ -28,14 +28,14 @@ app.get('/api/messages/:lat/:long', (req, res) => {
   console.log(`receiving the initial GET request with coords ${req.params.lat}, ${req.params.long}`);
   //retrieve all messages tagged with the region corresponding to incoming coords
   db.query('SELECT * from areas;', null, (err, results) => {
-    if (err) {
+    if (err) {  
       console.log('err querying pg db:', err);
       res.sendStatus(500);
     }
     console.log('successfully got noe mission', results.rows[0].geom);
-    const MissionNoeRegion = `SELECT ST_Polygon(ST_GeomFromText('LINESTRING(37.7453366 -122.4379927, 37.7481003 -122.415084, 37.76088 -122.4127313, 37.7607018 122.4360408, 37.7453366 -122.4379927)'), 4326))`;
+    const MissionNoeRegion = `ST_Polygon(ST_GeomFromText('LINESTRING(37.7453366 -122.4379927, 37.7481003 -122.415084, 37.76088 -122.4127313, 37.7607018 122.4360408, 37.7453366 -122.4379927)'), 4326)`;
 
-    const aPointInMissionNoe = 'SELECT ST_SetSRID(ST_MakePoint(37.7531416, -122.4260732),4326))';
+    const aPointInMissionNoe = 'ST_SetSRID(ST_MakePoint(37.7531416, -122.4260732),4326)';
     db.query(`SELECT ST_Contains(${MissionNoeRegion}, ${aPointInMissionNoe});`, null, (err, resultsSTContains) => {
       if (err) {
         console.log('err executing ST_Contains:', err);
