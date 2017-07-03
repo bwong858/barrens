@@ -9,7 +9,7 @@ const MessageList = ({messages, user}) => {
       <h2 className="title">Messages</h2>
       {messagesInChannel.length
         ? messagesInChannel.map(message => <MessageListItem key={message.id} message={message} user={user}/>)
-        : <h3> There are no messages in this channel! </h3>}
+        : <h4> No messages in this channel since login... Get the conversation going! </h4>}
     </div>
   );
 };

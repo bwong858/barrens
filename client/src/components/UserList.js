@@ -6,7 +6,7 @@ const UserList = ({users, user}) => {
   const usersInChannel = users.filter(otherUser => otherUser.channel === user.channel);
   return (
     <div className="user-list">
-      <h4 className="title">Users In This Channel</h4>
+      <h4 className="title">Users In The Conversation</h4>
       { usersInChannel.map(user => <UserListItem key={user.id} user={user} />) }
     </div>
   );

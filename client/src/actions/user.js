@@ -1,4 +1,4 @@
-import { SIGN_UP, LOG_IN, LOG_OUT, CHANGE_CHANNEL } from './actionTypes';
+import { SIGN_UP, LOG_IN, LOG_OUT, CHANGE_CHANNEL, UPDATE_LOCATION } from './actionTypes';
 
 export const signUp = (username, password) => ({
   type: SIGN_UP,
@@ -19,3 +19,10 @@ export const changeChannel = channel => ({
   type: CHANGE_CHANNEL,
   channel
 });
+
+export const updateLocation = location => ({
+  type: UPDATE_LOCATION,
+  location
+});
+
+

@@ -10,13 +10,26 @@ import MessageBoardContainer from '../containers/MessageBoardContainer';
 import Login from './Login';
 import Signup from './Signup';
 import {updateMessages} from '../actions/messages';
-import {logIn} from '../actions/user';
+import {logIn, updateLocation} from '../actions/user';
 
 
-
-const App = ({user, logIn, updateMessages}) => {
+const App = ({user, logIn, updateMessages, updateLocation}) => {
   const socket = io();
   let username;
+
+  const getLocationAndUpdate = (username) =>
+    new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject))
+      .then(pos => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        // return fetch(`https://vast-tor-38918.herokuapp.com/api/messages/${lat}/${lon}`);
+        return fetch(`http://localhost:8000/api/users/${username}/${lat}/${lon}`, {
+          method: 'PUT'
+        });
+      })
+      .then(res => res.text())
+      .then(region => updateLocation(region));
 
   const checkUsername = () => {
     if (!username) {
@@ -28,10 +41,10 @@ const App = ({user, logIn, updateMessages}) => {
           if (res.status === 201) {
             logIn(username);
             socket.on('message', message => {
-              console.log('received message :D:D:D');
               updateMessages(message);
             });
             socket.emit('subscribe', user.region);
+            getLocationAndUpdate(username);
           } else {
             username = prompt('Unfortunately, that username is taken. Please try another.');
             checkUsername();
@@ -45,11 +58,12 @@ const App = ({user, logIn, updateMessages}) => {
     checkUsername();
   }
 
+      // <Navbar />
   return (
     <div className="app">
-      <Navbar />
       <h1 className="title">Barrens</h1>
       <h3>{user.region}</h3>
+      <h5>{user.username}</h5>
       <Switch>
         <Route exact path="/" render={props => <MessageBoardContainer socket={socket}/>}/>
         <Route path="/signup" component={Signup}/>
@@ -69,6 +83,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateMessages: message => {
     dispatch(updateMessages(message));
+  },
+  updateLocation: location => {
+    dispatch(updateLocation(location));
   }
 });
 
