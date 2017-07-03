@@ -23,6 +23,7 @@ CREATE TABLE areas (
 CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
   username VARCHAR UNIQUE NOT NULL,
+  area INTEGER REFERENCES areas (id),
   points INTEGER,
   salt VARCHAR UNIQUE
 );
@@ -30,7 +31,7 @@ CREATE TABLE users (
 
 CREATE TABLE events (
   ID SERIAL PRIMARY KEY,
-  area integer REFERENCES areas (id),
+  area INTEGER REFERENCES areas (id),
   description VARCHAR,
   url VARCHAR
 );
