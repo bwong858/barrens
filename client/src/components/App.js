@@ -58,7 +58,7 @@ const App = ({user, logIn, updateMessages, updateLocation}) => {
     checkUsername();
   }
 
-      // <Navbar />
+  // <Navbar />
   return (
     <div className="app">
       <h1 className="title">Barrens</h1>

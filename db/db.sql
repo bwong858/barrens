@@ -16,12 +16,14 @@ CREATE TABLE areas (
   minLong DOUBLE PRECISION,
   minLat DOUBLE PRECISION,
   maxLong DOUBLE PRECISION,
-  maxLat DOUBLE PRECISION
+  maxLat DOUBLE PRECISION,
+  geom GEOMETRY
 );
 
 CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
   username VARCHAR UNIQUE NOT NULL,
+  area INTEGER REFERENCES areas (id),
   points INTEGER,
   salt VARCHAR UNIQUE
 );
@@ -29,26 +31,27 @@ CREATE TABLE users (
 
 CREATE TABLE events (
   ID SERIAL PRIMARY KEY,
-  area VARCHAR REFERENCES areas (name),
+  area INTEGER REFERENCES areas (id),
   description VARCHAR,
   url VARCHAR
 );
 
 CREATE TABLE channels (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR UNIQUE NOT NULL,
-  users VARCHAR REFERENCES users (username),
-  areas VARCHAR REFERENCES areas (name)
+  name VARCHAR UNIQUE NOT NULL
+  -- name VARCHAR UNIQUE NOT NULL,
+  -- users INTEGER REFERENCES users (id),
+  -- areas INTEGER REFERENCES areas (id)
 );
 
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
-  username VARCHAR REFERENCES users (username),
+  username INTEGER REFERENCES users (id),
   content TEXT NOT NULL,
-  channels VARCHAR REFERENCES channels (name),
+  channels INTEGER REFERENCES channels (id),
   upvotes SMALLINT,
   downvotes SMALLINT,
-  area VARCHAR REFERENCES areas (name),
+  area INTEGER REFERENCES areas (id),
   stamp TIMESTAMPTZ,
   location POINT
 );
@@ -64,7 +67,24 @@ CREATE TABLE session (
 
 -- Attendees, Join would be many events to many users
 -- CREATE TABLE users_events (
---   ID SERIAL PRIMARY KEY,
+--   ID SERIAL PRIMARY KEY, 
 --   users
 --   events
 -- );
+
+-- Hard Code 3 Channels into Channels
+INSERT INTO channels VALUES (DEFAULT, 'general'), (DEFAULT, 'marketplace'), (DEFAULT, 'events');
+
+-- Hard Coding Regions into the Areas Table
+
+INSERT INTO areas VALUES (DEFAULT, 'MissionNoeRegion', -122.4127313, 37.7453366, -122.4379927, 37.76088, ST_Polygon(ST_GeomFromText('LINESTRING(37.7453366 -122.4379927, 37.7481003 -122.415084, 37.76088 -122.4127313, 37.7607018 -122.4360408, 37.7453366 -122.4379927)'), 4326));
+
+INSERT INTO areas VALUES (DEFAULT, 'Hack Reactor', -122.4127313, 37.7453366, -122.4379927, 37.76088, ST_Polygon(ST_GeomFromText('LINESTRING(37.7839812 -122.4095393, 37.7840088 -122.4081901, 37.7832896 -122.4081727, 37.7830909 -122.4098289, 37.7839812 -122.4095393)'), 4326));
+
+-- HR Lat & Long (37.7836076, -122.4090994); Below is Command for Hack Reactor
+-- SELECT name FROM AREAS WHERE ST_Contains(geom, ST_SetSRID(ST_MakePoint(37.7836076, -122.4090994),4326));
+
+INSERT INTO areas VALUES (DEFAULT, 'UC Berkeley', 0, 0, 0, 0, ST_Polygon(ST_GeomFromText('LINESTRING(37.8680837 -122.265975, 37.8739127 -122.2658892, 37.8751862 -122.2570486, 37.8718558 -122.2530789, 37.8696241 -122.2526511, 37.8680837 -122.265975)'), 4326));
+
+-- HR Lat & Long (37.7836076, -122.4090994); Below is Command for Campanile
+-- SELECT name FROM AREAS WHERE ST_Contains(geom, ST_SetSRID(ST_MakePoint(37.8723078, -122.2582824),4326));

@@ -14,11 +14,13 @@ const MessageBoard = ({
   getUserInfo,
   changeChannel
 }) => {
+  const users = Array.from(new Set(messages.map(message => message.username)));
+
   return (
     <div className="message-board">
       <div className="channels-users-sidebar inline-block">
         <ChannelList user={user} channels={dummyChannels} changeChannel={changeChannel} />
-        <UserList users={dummyUsers} user={user} />
+        <UserList users={users} user={user} />
       </div>
       <div className="message-list-container inline-block">
         <MessageList messages={messages} user={user} />

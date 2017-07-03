@@ -2,7 +2,7 @@ import { LOG_IN, LOG_OUT, GET_USER_INFO, CHANGE_CHANNEL, UPDATE_LOCATION } from 
 
 const initialState = {
   username: 'anon',
-  region: 'Market St',
+  region: '... nowhere ...',
   channel: 'General'
 };
 
