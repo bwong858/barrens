@@ -29,7 +29,10 @@ const App = ({user, logIn, updateMessages, updateLocation}) => {
         });
       })
       .then(res => res.text())
-      .then(region => updateLocation(region));
+      .then(region => {
+        updateLocation(region);
+        socket.emit('subscribe', region);
+      });
 
   const checkUsername = () => {
     if (!username) {
@@ -43,7 +46,6 @@ const App = ({user, logIn, updateMessages, updateLocation}) => {
             socket.on('message', message => {
               updateMessages(message);
             });
-            socket.emit('subscribe', user.region);
             getLocationAndUpdate(username);
           } else {
             username = prompt('Unfortunately, that username is taken. Please try another.');
