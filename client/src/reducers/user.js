@@ -1,27 +1,22 @@
-import { SIGN_UP, LOG_IN, LOG_OUT, GET_USER_INFO, CHANGE_CHANNEL } from '../actions/actionTypes';
+import { LOG_IN, LOG_OUT, GET_USER_INFO, CHANGE_CHANNEL, UPDATE_LOCATION } from '../actions/actionTypes';
 
 const initialState = {
   username: 'anon',
-  region: 'Market St',
+  region: '... nowhere ...',
   channel: 'General'
 };
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case SIGN_UP:
-      // post request to see if desired username is taken
-      // password must have length of at least 10 characters
-      console.log('SIGNING UP');
-      return state;
     case LOG_IN:
-      // post request to compare username + hash(pass + salt) to username + hash
-      console.log('LOGGING IN');
-      return state;
+      return { ...state, username: action.username };
     case LOG_OUT:
       // set to initial state but keep current region
       return { ...initialState, region: state.region };
     case CHANGE_CHANNEL:
       return { ...state, channel: action.channel };
+    case UPDATE_LOCATION:
+      return { ...state, region: action.location };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchMessages, setMessages, updateMessages } from '../actions/messages';
+import { setMessages, updateMessages } from '../actions/messages';
 import { changeChannel } from '../actions/user';
 
 import MessageBoard from '../components/MessageBoard';
@@ -11,9 +11,6 @@ const mapStateToProps = ({ messages, user }, { socket }) => ({ // state, ownProp
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchMessages: (lat, lon) => {
-    dispatch(fetchMessages(lat, lon));
-  },
   setMessages: messages => {
     dispatch(setMessages(messages));
   },

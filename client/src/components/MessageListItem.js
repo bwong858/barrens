@@ -9,16 +9,16 @@ import React from 'react';
 */
 
 const MessageListItem = ({ message, user }) => {
-  const el = message.username === user.username
+  const el = message.username === user.username // change to userId
     ? <span className="own-message">
+        <span className="meta">{message.timestamp}</span>
+        <br/>
         {message.text}
-        <span className="timestamp">{message.timestamp}</span>
       </span>
     : <span className="other-user-message">
-        <span className="username">{message.username}</span>
+        <span className="meta own">{message.username} - {message.timestamp}</span>
         <br />
-        <span>{message.text}</span>
-        <span className="timestamp">{message.timestamp}</span>
+        {message.text}
       </span>;
   return (
     <div className="message-list-item">

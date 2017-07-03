@@ -23,7 +23,7 @@ class MessageInput extends Component {
       this.props.socket.emit('send', {
         ...this.props.user,
         text: this.state.input,
-        timestamp: Date.now()
+        timestamp: new Date().toLocaleTimeString('en-us')
       });
       this.setState({
         input: ''

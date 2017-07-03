@@ -1,5 +1,6 @@
 body {
   background-color: #eee;
+  background-image: url('https://i.ytimg.com/vi/Do5s0MQvF9s/maxresdefault.jpg');
 }
 
 form {
@@ -32,8 +33,11 @@ a {
   .title {
     margin: 2rem;
   }
-  h3 {
+  h3, h5 {
     text-align: center;
+  }
+  h5 {
+    color: teal;
   }
 }
 
@@ -91,7 +95,7 @@ a {
   overflow: auto;
 }
 
-.username {
+.meta {
   font-size: 1rem;
   color: teal;
 }
@@ -116,7 +120,7 @@ a {
 }
 
 .selected {
-  color: blue;
+  color: #eee;
 }
 
 .pointer-on-hover {
