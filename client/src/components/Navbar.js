@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <span className="messages-events">
-        <Link to="/messages">Message Board</Link>
+        <Link to="/">Message Board</Link>
       </span>
       <span className="signup-login">
         <Link to="/signup">Sign Up</Link>

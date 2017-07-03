@@ -22,7 +22,7 @@ const App = ({ user }) => {
       <h1 className="title">Barrens</h1>
       <h3>{user.region}</h3>
       <Switch>
-        <Route path="/messages" render={props => <MessageBoardContainer socket={socket} />} />
+        <Route exact path="/" render={props => <MessageBoardContainer socket={socket} />} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
       </Switch>
