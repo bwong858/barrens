@@ -16,7 +16,7 @@ const user = (state = initialState, action) => {
     case LOG_IN:
       // post request to compare username + hash(pass + salt) to username + hash
       console.log('LOGGING IN');
-      return state;
+      return { ...state, username: action.username };
     case LOG_OUT:
       // set to initial state but keep current region
       return { ...initialState, region: state.region };

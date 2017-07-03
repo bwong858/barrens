@@ -9,13 +9,31 @@ import Navbar from './Navbar';
 import MessageBoardContainer from '../containers/MessageBoardContainer';
 import Signup from './Signup';
 import Login from './Login';
+import { logIn } from '../actions/user';
 
 const mapStateToProps = ({ user }) => ({
   user
 });
 
-const App = ({ user }) => {
+const mapDispatchToProps = dispatch => ({
+  logIn: username => { dispatch(logIn(username)); }
+});
+
+const App = ({ user, logIn }) => {
   const socket = io();
+  let username = prompt('Enter a steezy username.', 'SteezyBob');
+  if (!username) {
+    username = prompt('Actually enter a username.');
+  } else {
+    fetch(`http://localhost:8000/api/users/${username}`, { method: 'POST '})
+      .then(statusCode => {
+        if (statusCode === 201) {
+          logIn(username);
+        } else {
+          username = prompt('Unfortunately, that username is taken. Please try another.');
+        }
+      });
+  }
   return (
     <div className="app">
       <Navbar />
@@ -30,4 +48,4 @@ const App = ({ user }) => {
   );
 };
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
