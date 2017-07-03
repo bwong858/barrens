@@ -11,7 +11,7 @@ import React from 'react';
 const MessageListItem = ({ message, user }) => {
   const el = message.username === user.username // change to userId
     ? <span className="own-message">
-        {message.timestamp}
+        {message.timestamp}{user.username}
         <br/>
         {message.text}
       </span>

@@ -6,10 +6,9 @@ export const signUp = (username, password) => ({
   password
 });
 
-export const logIn = (username, password) => ({
+export const logIn = (username) => ({
   type: LOG_IN,
-  username,
-  password
+  username
 });
 
 export const logOut = () => ({

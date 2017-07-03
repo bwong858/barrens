@@ -27,19 +27,19 @@ const MessageBoard = ({
   updateMessages,
   changeChannel
 }) => {
-  let fetching = true;
-
-  if (!messages.length) {
-    fetchInitialMessages().then(messages => {
-      setMessages(messages);
-      socket.on('message', message => {
-        updateMessages(message);
-      });
-      socket.emit('subscribe', 'Market St');
-    });
-  } else {
-    fetching = false;
-  }
+  // let fetching = true;
+  //
+  // if (!messages.length) {
+  //   fetchInitialMessages().then(messages => {
+  //     setMessages(messages);
+  //     socket.on('message', message => {
+  //       updateMessages(message);
+  //     });
+  //     socket.emit('subscribe', 'Market St');
+  //   });
+  // } else {
+  //   fetching = false;
+  // }
 
   return (
     <div className="message-board">
@@ -48,7 +48,7 @@ const MessageBoard = ({
         <UserList users={dummyUsers} user={user} />
       </div>
       <div className="message-list-container inline-block">
-        <MessageList messages={messages} user={user} fetching={fetching} />
+        <MessageList messages={messages} user={user} />
         <MessageInput socket={socket} getUserInfo={getUserInfo} user={user} />
       </div>
     </div>
