@@ -1,5 +1,4 @@
 import React from 'react';
-// import Promise from 'bluebird';
 
 import ChannelList from './ChannelList';
 import UserList from './UserList';
@@ -8,11 +7,8 @@ import MessageInput from './MessageInput';
 
 import { dummyChannels, dummyUsers, dummyMessages } from '../dummyData';
 
-const fetchInitialMessages = (lat, lon) => {
-  const getPos = () =>
-    new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
-
-  return getPos()
+const fetchInitialMessages = (lat, lon) =>
+  new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject))
     .then(pos => {
       const lat = pos.coords.latitude;
       const lon = pos.coords.longitude;
@@ -21,14 +17,19 @@ const fetchInitialMessages = (lat, lon) => {
       return fetch(`http://localhost:8000/api/messages/${lat}/${lon}`);
     })
     .then(res => res.json());
-};
 
-const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, updateMessages, changeChannel }) => {
+const MessageBoard = ({
+  socket,
+  user,
+  messages,
+  setMessages,
+  getUserInfo,
+  updateMessages,
+  changeChannel
+}) => {
   let fetching = true;
 
   if (!messages.length) {
-    // problematic if there are no messages to fetch - will continue to create sockets; however, must create socket exactly once in order to begin populating messages on emit
-    // if messages state is actually empty, message send MUST trigger re-render in order to ever render the message(s)
     fetchInitialMessages().then(messages => {
       setMessages(messages);
       socket.on('message', message => {
@@ -39,7 +40,6 @@ const MessageBoard = ({ socket, user, messages, setMessages, getUserInfo, update
   } else {
     fetching = false;
   }
-  // let fetching = false; // for use with dummyData
 
   return (
     <div className="message-board">
