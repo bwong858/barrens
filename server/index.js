@@ -52,14 +52,31 @@ app.get('/api/:lat/:long/:channel', (req, res) => {
   //
 });
 
-
-
 app.get('/api/region/:lat/:long', (req, res) => {
   //retrieve region name based off lat and long
 });
 
-app.get('/hi', (req, res) => {
-  res.send('hi');
+app.post('/api/users/:newUsername', (req, res) => {
+  const newUsername = req.params.newUsername;
+  db.query('SELECT username from users;', null, (err, results) => {
+    if (err) {
+      console.log('err retrieving messages from the db', err);
+      res.status(500).send('Error retrieving messages');
+    }
+    const usernames = results.rows.map(rowObj => rowObj.username);
+    if (usernames.includes(newUsername)) {
+      res.status(406).send('username already taken');
+    } else {
+      db.query(`INSERT INTO users VALUES (DEFAULT, '${newUsername}', 0, null);`, null, (err, resultsOfInsertion) => {
+        if (err) {
+          console.log('err inserting into db', err);
+          res.status(500).send('Error inserting into db');
+        }
+        console.log('successfully inserted into users', resultsOfInsertion);
+        res.status(201).send('successfully inserted into users');
+      });
+    }
+  });
 });
 
 // likely no posting messages route -- everything will happen in the socket
@@ -77,6 +94,7 @@ io.sockets.on('connection', (socket) => {
   socket.on('send', (data) => {
     console.log('received message', data);
     io.sockets.in(data.region).emit('message', data);
+    //db.query(`INSERT INTO messages VALUES (DEFAULT, '${}', '${}', )`)
     // io.emit('message', data);
   });
 });
