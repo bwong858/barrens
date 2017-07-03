@@ -27,24 +27,6 @@ app.get('/api/messages/:lat/:long', (req, res) => {
   //retrieve all messages tagged with general'
   console.log(`receiving the initial GET request with coords ${req.params.lat}, ${req.params.long}`);
   //retrieve all messages tagged with the region corresponding to incoming coords
-  db.query('SELECT * from areas;', null, (err, results) => {
-    if (err) {  
-      console.log('err querying pg db:', err);
-      res.sendStatus(500);
-    }
-    //console.log('successfully got noe mission', results.rows[0].geom);
-    const MissionNoeRegion = `ST_Polygon(ST_GeomFromText('LINESTRING(37.7453366 -122.4379927, 37.7481003 -122.415084, 37.76088 -122.4127313, 37.7607018 -122.4360408, 37.7453366 -122.4379927)'), 4326)`;
-
-    const aPointInMissionNoe = 'ST_SetSRID(ST_MakePoint(37.7531416, -122.4260732),4326)';
-    db.query(`SELECT ST_Contains(${MissionNoeRegion}, ${aPointInMissionNoe});`, null, (err, resultsSTContains) => {
-      if (err) {
-        console.log('err executing ST_Contains:', err);
-        res.sendStatus(500);
-      }
-      console.log('results of ST_Contains:', resultsSTContains);
-      res.sendStatus(200);
-    });    
-  });
   res.json(dummyMessages);
 });
 
@@ -84,10 +66,39 @@ app.put('/api/users/:username/:lat/:long', (req, res) => {
   //update the user with name=username with the coords denoting their location
   //update is likely not the same command as insert into
   //if update is complicated, have it all come in as a single request 
-  //return a response that contains the type string region name 
-  res.status(201).send('Hack reactor');
+  //return a response that contains the type string region name
+  const userLat = req.params.lat;
+  const userLong = req.params.long;
+  
+  const userCoord = `ST_SetSRID(ST_MakePoint(${userLat}, ${userLong}),4326)`;
+  db.query(`SELECT id, name FROM areas WHERE ST_Contains(geom, ${userCoord});`, null, (err, result) => {
+    if (err) {
+      console.log('err executing ST_Contains:', err);
+      res.sendStatus(500);
+    } else {
+      const userRegionID = result.rows[0].id;
+      const userRegionName = result.rows[0].name;
+      console.log('id and name of region user was placed in:', result.rows[0].name);
+      //at this point we have the id and name
+      //update the users table with the id of the region that user is in
+      //send the name of the region the user was placed in
+      db.query(`UPDATE users SET areas=${userRegionID}`, null, (err, result) => {
+        if (err) {
+          console.log('err updating the user record', err);
+          res.sendStatus(500);
+        } else {
+          console.log('successfully updated user');
+          res.status(201).send(`${userRegionName}`);
+        }
+      }); 
+    }
+  });    
+  
+  //res.status(201).send('Hack reactor');
 });
 // likely no posting messages route -- everything will happen in the socket
+
+// ---------------------------- SOCKET LOGIC ------------------------------
 
 io.sockets.on('connection', (socket) => {
   console.log('a user has connected');
@@ -102,7 +113,8 @@ io.sockets.on('connection', (socket) => {
   socket.on('send', (data) => {
     console.log('received message', data);
     io.sockets.in(data.region).emit('message', data);
-    db.query(`INSERT INTO messages VALUES (DEFAULT, null, '${data.text}', null, 0, 0, '${data.region}', null, null);`, null, (err, results) => {
+    //need to get the id corresponding to a user, the id corresponding to the channel name, and the id corresponding to the area
+    db.query(`INSERT INTO messages VALUES (DEFAULT, 1, '${data.text}', 1, 0, 0, 1, null, null);`, null, (err, results) => {
       if (err) {
         console.log('err inserting into messages', err);
       } else {

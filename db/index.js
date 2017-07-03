@@ -9,7 +9,7 @@ const pg = require('pg');
 // note: all config is optional and the environment variables 
 // will be read if the config is not present 
 var config = {
-  user: 'masonraasch', //env var: PGUSER // TODO: figure out how to create new users
+  user: 'masonraasch', //env var: PGUSER // TODO: figure out how to create new users // NOTE: if you run 'createdb' with no params, this username will be whatever the name you see in your terminal
   database: 'barrens', //env var: PGDATABASE 
   //password: 'PGPASSWORD', //env var: PGPASSWORD // unneccessary until you set a PW
   host: 'localhost', // Server hosting the postgres database 
