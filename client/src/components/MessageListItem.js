@@ -8,12 +8,21 @@ import React from 'react';
     username instead of userId
 */
 
-const MessageListItem = ({message}) => {
+const MessageListItem = ({ message, user }) => {
+  const el = message.username === user.username
+    ? <span className="own-message">
+        {message.text}
+        <span className="timestamp">{message.timestamp}</span>
+      </span>
+    : <span className="other-user-message">
+        <span className="username">{message.username}</span>
+        <br />
+        <span>{message.text}</span>
+        <span className="timestamp">{message.timestamp}</span>
+      </span>;
   return (
     <div className="message-list-item">
-      {message.text}
-      <br />
-      <span className="username">{message.userId}</span>
+      {el}
     </div>
   );
 };
