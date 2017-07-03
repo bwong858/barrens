@@ -38,9 +38,10 @@ CREATE TABLE events (
 
 CREATE TABLE channels (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR UNIQUE NOT NULL,
-  users INTEGER REFERENCES users (id),
-  areas INTEGER REFERENCES areas (id)
+  name VARCHAR UNIQUE NOT NULL
+  -- name VARCHAR UNIQUE NOT NULL,
+  -- users INTEGER REFERENCES users (id),
+  -- areas INTEGER REFERENCES areas (id)
 );
 
 CREATE TABLE messages (
@@ -66,10 +67,13 @@ CREATE TABLE session (
 
 -- Attendees, Join would be many events to many users
 -- CREATE TABLE users_events (
---   ID SERIAL PRIMARY KEY,
+--   ID SERIAL PRIMARY KEY, 
 --   users
 --   events
 -- );
+
+-- Hard Code 3 Channels into Channels
+INSERT INTO channels VALUES (DEFAULT, 'general'), (DEFAULT, 'marketplace'), (DEFAULT, 'events');
 
 -- Hard Coding Regions into the Areas Table
 
