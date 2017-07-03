@@ -1,9 +1,9 @@
 import React from 'react';
 
-const UserListItem = ({ user }) => {
+const UserListItem = ({ username }) => {
   return (
     <div className="user-list-item">
-      { user.name }
+      { username }
     </div>
   );
 };
