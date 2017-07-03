@@ -102,6 +102,10 @@ IE: if B is completely in A
 
 Sample Command: "SELECT ST_Contains("POLYGON", ST_SetSRID(ST_MakePoint(-71.0, 42.3),4326)) FROM areas"
 
+> Get Name of the Area where the message is located
+
+SELECT name FROM AREAS WHERE ST_Contains(geom, ST_SetSRID(ST_MakePoint(37.7531416, -122.4260732),4326));
+
 > PostGIS Resources:
 
 https://gist.github.com/clhenrick/ebc8dc779fb6f5ee6a88 (postGIS cheat-sheet)

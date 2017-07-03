@@ -16,7 +16,8 @@ CREATE TABLE areas (
   minLong DOUBLE PRECISION,
   minLat DOUBLE PRECISION,
   maxLong DOUBLE PRECISION,
-  maxLat DOUBLE PRECISION
+  maxLat DOUBLE PRECISION,
+  geom GEOMETRY
 );
 
 CREATE TABLE users (
@@ -29,7 +30,7 @@ CREATE TABLE users (
 
 CREATE TABLE events (
   ID SERIAL PRIMARY KEY,
-  area VARCHAR REFERENCES areas (name),
+  area integer REFERENCES areas (id),
   description VARCHAR,
   url VARCHAR
 );
@@ -37,18 +38,18 @@ CREATE TABLE events (
 CREATE TABLE channels (
   ID SERIAL PRIMARY KEY,
   name VARCHAR UNIQUE NOT NULL,
-  users VARCHAR REFERENCES users (username),
-  areas VARCHAR REFERENCES areas (name)
+  users INTEGER REFERENCES users (id),
+  areas INTEGER REFERENCES areas (id)
 );
 
 CREATE TABLE messages (
   ID SERIAL PRIMARY KEY,
-  username VARCHAR REFERENCES users (username),
+  username INTEGER REFERENCES users (id),
   content TEXT NOT NULL,
-  channels VARCHAR REFERENCES channels (name),
+  channels INTEGER REFERENCES channels (id),
   upvotes SMALLINT,
   downvotes SMALLINT,
-  area VARCHAR REFERENCES areas (name),
+  area INTEGER REFERENCES areas (id),
   stamp TIMESTAMPTZ,
   location POINT
 );
@@ -68,3 +69,7 @@ CREATE TABLE session (
 --   users
 --   events
 -- );
+
+-- Hard Coding Regions into the Areas Table
+
+INSERT INTO areas VALUES (DEFAULT, 'MissionNoeRegion', -122.4127313, 37.7453366, -122.4379927, 37.76088, ST_Polygon(ST_GeomFromText('LINESTRING(37.7453366 -122.4379927, 37.7481003 -122.415084, 37.76088 -122.4127313, 37.7607018 -122.4360408, 37.7453366 -122.4379927)'), 4326));
